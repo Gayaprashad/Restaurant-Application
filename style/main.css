@@ -1,0 +1,24 @@
+:root{
+  --success-color:#2ecc71;
+  --error-color:#e74c3c;
+}
+
+#orpass, #orname{
+  visibility:hidden;
+}
+.form-group.sucess input{
+  border-color: var(--success-color);
+}
+
+.form-group.error input{
+  border-color: var(--error-color);
+}
+
+.form-group small{
+  color : var(--error-color);
+  visibility:hidden;
+}
+
+.form-group.error small{
+  visibility: visible;
+}

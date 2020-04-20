@@ -1,0 +1,40 @@
+While the application was being created XAMMP Server was used and SQLi Database was used as the database.
+
+The page performs the following function:
+----------------------------------------
+
+1.index.php - Initial page. It leads any of the following pages such as registration.php, login.php, list.php, based upon the user input.
+
+2. registration.php: It asks whether the registration is for Customer or restaurant and redirects to c_reg.php or r_reg.php appropriately.
+	2.1. c_reg.php: It registers the customer and enters their data in the Customer table
+	2.2. r_reg.php: It registers the restaurant and enters their data in the restaurant table
+
+3. login.php: It redirects to r_login.php or c_login.php based upon whether the user is customer or restaurant.
+	3.1. c_login.php: It collects and authorises the Login by comparing it to the data in the Customer table .It sets the session data. It redirects the curomer to list.php
+	3.2. r_login.php: It collects and authorises the Login by comparing it to the data in the Restaurant table .It sets the session data. It then sends the user to r_redirect.php.
+
+4. list.php: It enumerates all the food items for the uer to choose from . The user can add it to his cart using the cart button. The cart button redirects the user to the cart.php while storing the data of the item stored in temp_order table.
+	4.1. cart.php:It enumerates the data in temp_order and calculates the total price. The user is redirected to the order.php when he clicks the button Place Order.
+	4.2. order.php: It stores the data from temp_order to the cur_order along with the customer name. It also wipes out the temp_order table.
+
+5. r_redirect.php:It enumerates teh functionalities available for the restaurant user. It redirects the user to the item.php or the order_view.php based on the choice of the customer.
+	5.1. item.php: It allows the restaurant user to add the menu items. The data is then stored in menu table that is used by the list.php to enumerate the menu list for the customer.
+	5.2. order_view.php: It allows the restaurant owners to views the orders that are given to their restaurant by all the customers from the cur_order table. It also has a fulfilled button that enables the restaurant owner to delete the particular order pnce fulfilled by redirecting to the rem_order.php.
+	5.3 rem_order.php: It removes the particular order from the cur_order table.
+
+6.logout.php: It enables both the customer and the restaurant user to log out from the respective sessions. It wipes out the session and the temp_order table data.
+
+Database:
+---------
+
+There are four tables inside the restaurant database. Each one performs the following functions:
+1. Customers: It stores the data of the customer when he enters it in the c_reg.php. It then given the data for login authentication in the c_login.php and for the creating of the session data.
+2. Restaurant: It stores the data of the restaurant when he enters it in the r_reg.php. It then given the data for login authentication in the r_login.php and for the creating of the session data.
+3. cur_order: It stores the data of the final order details.
+4. temp_order: It stores the order detail for the cart functionality when the user confirms the order it is moved to cur_order.
+5. menu: It stores the details of the menu and then gives the data to render teh list.php page.
+
+File Structure:
+--------------
+1. config:It contains the configuration files such as database connection and the path.
+2. inc: It contains the templates for the header, the footer and the navbar.

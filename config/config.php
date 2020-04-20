@@ -1,0 +1,3 @@
+<?php
+  define('path','/internshala');
+?>
